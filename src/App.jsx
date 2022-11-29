@@ -98,7 +98,7 @@ let temp = Math.floor(data.main.temp)
 
   
   return (
-    <div className="w-full h-screen px-8 flex flex-col items-center justify-center">
+    <div className="w-full h-[80vh] px-8 flex flex-col items-center justify-center">
       <div
         className={`max-w-screen-sm h-[600px] py-6 px-8 w-full bg-gradient-to-br 
          ${ temp > 25 ? " from-orange-400 to-red-500 " : " from-teal-400 to-cyan-700 "}  rounded shadow-xl shadow-gray-500`}
