@@ -6,8 +6,8 @@ import {
   BsWind,
 } from "react-icons/bs";
 
-
 const WeatherBottom = ({ data }) => {
+  
   return (
     <div className="w-full my-8">
       <div className="flex justify-around gap-5">

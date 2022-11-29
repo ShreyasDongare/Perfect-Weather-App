@@ -21,10 +21,9 @@ import ErrorMessage from "./components/ErrorMessage";
 const API_KEY = "a760ebe2645772b675936874aa6dedb0";
 
 const App = () => {
-  const [location, setLocaltion] = useState("paris");
+  const [location, setLocaltion] = useState("kolkata");
   const [isError, setIsError] = useState(false)
   const [data, setData] = useState(null);
-  const [isHigh, setIsHigh] = useState(true) 
 
  
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=metric`;
@@ -36,16 +35,15 @@ const App = () => {
       setIsError(false)
        const resp = await fetch(url);
        const respJson = await resp.json();
-       console.log(respJson)
        if(respJson.cod != "404"){
          setData(respJson);
        }else{
         setIsError(true)
+        console.log(error)
        }
        
      } catch (error) {
        setIsError(true);
-       console.log(error);
      }
    };
 
@@ -55,14 +53,12 @@ const App = () => {
 
  //handle Submit of Form Component
  const handleSubmit = (city) => {
-   console.log(city);
    setLocaltion(city);
  };
 
 
   //setting laoder if data is falsy or loading
   if (!data) {
-    console.log("data")
     return (
       <div className="flex justify-center ">
         <Loading />
@@ -100,21 +96,12 @@ const App = () => {
 
 let temp = Math.floor(data.main.temp)
 
-// if(temp < 25){
-//   setIsHigh(true)
-// }
-// else{
-//   setIsHigh(false)
-// }
   
-//   console.log(isHigh)
   return (
     <div className="w-full h-screen px-8 flex flex-col items-center justify-center">
       <div
         className={`max-w-screen-sm h-[600px] py-6 px-8 w-full bg-gradient-to-br 
-        ${
-          isHigh ? " from-teal-400 to-cyan-700" : " from-orange-400 to-red-500"
-        } rounded shadow-xl shadow-gray-500`}
+         ${ temp > 25 ? " from-orange-400 to-red-500 " : " from-teal-400 to-cyan-700 "}  rounded shadow-xl shadow-gray-500`}
       >
         <div className="w-full text-center my-4 ">
           <h1 className="text-3xl font-medium text-white">Perfect Weather</h1>
